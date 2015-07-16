@@ -232,3 +232,6 @@ def split_list(alist, wanted_parts=1):
 rc = pn.RedCorr()
 rc.law = 'G03 LMC'
 IntrinsicHB=np.linspace(2.8,3.1,31)
+
+
+####Comentario
