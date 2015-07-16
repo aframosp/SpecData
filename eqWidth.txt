@@ -1,0 +1,32 @@
+#   The plot of relative intensity and continuum emission for the galaxy index jj and the wavelenght of all the lines
+
+from scipy.integrate import simps
+
+jj=0
+orderU = 10**(int(mt.log(np.mean(spectraFlux), 10))-1)
+
+spec =np.array(spectraFlux)
+spec2, lambd = r(spec, lambd, 0.004*orderU) # este parámetro de 0.004 puede ser igual para todas las galaxias
+                                      #  pero seria bueno iterar sobre este valor para tener mejores continuos
+                                      #  o tal vez tomar tres o maś regiones del espectro observado y calcular spec
+                                    #  para diferentes parámetros de 0.1 a 0.001
+        
+        
+%matplotlib
+spe = []
+speCont = []
+for xind in range(len(spectraFlux)):
+    spe.append((spectraFlux[xind])/(spec2[xind]))
+    speCont.append((spec2[xind])/(spec2[xind]))
+for i in range(len(Tablas[jj])):
+    plt.axvline(x=Tablas[jj]['Lambda Vac'][i],c='dimgrey',lw=0.8,ls='--')
+    plt.text(Tablas[jj]['Lambda Vac'][i] + 0.5, Tablas[jj]['Amplitude'][i] * 1.2,Tablas[jj]['Element'][i])
+
+plt.plot(lambd, spe, c='k', lw=0.5, label='normalized data')
+#plt.plot(lambd[703:730], spe[703:730], c='b', lw=2.5, label='normalized data')
+plt.plot(lambd, speCont, lw=2, label='normalized continuum')
+
+#  una vez normalizado el espectro observado a la medida del contínuo se integra por el método de Simpson
+for iLineProf in range(len(lineProf)):
+    sInteg = simps(y=spe[lineProf['inf'][iLineProf]:lineProf['sup'][iLineProf]], x=lambd[lineProf['inf'][iLineProf]:lineProf['sup'][iLineProf]], even='avg')
+    print "Line Wavelgt : ", ListaLineas['LAMBDA VAC ANG'][iLineProf], ". Equivalent Width ", sInteg 
