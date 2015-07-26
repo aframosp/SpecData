@@ -286,7 +286,7 @@ def finalFit(i, spec,lambd,ListLines,ListGal,spIvar,iterr, limResol):
                     lineWidthBase = (lambd[lineP['sup'][x]] - lambd[lineP['inf'][x]])/(2*nLines)
                       ##   calculate the observed line width at the base of the profile
                     if ampMax <=0:
-                        print "amplitud menor a cero"
+                        print "It has not been possible to fit the line: ", ListLines['LAMBDA VAC ANG'][x]
                         Gaus.append(models.Gaussian1D(amplitude=0,mean=ListLines['LAMBDA VAC ANG'][x],stddev=0))
                     elif ampMax<=3*spIvar[lineP['lambda'][x]]:
                           ##   no model for the amplitud less tah three times the error
@@ -298,11 +298,11 @@ def finalFit(i, spec,lambd,ListLines,ListGal,spIvar,iterr, limResol):
                     Gaus.append(models.Gaussian1D(amplitude=0,mean=ListLines['LAMBDA VAC ANG'][x],stddev=0))
         condit = False  #   esto es mejor quitarlo
     sum_Gaussian=Gaus[0]
-    #for ooasia in range(1,len(Gaus)):
+    for ooasia in range(1,len(Gaus)):
             #  sum of all the models respective to all the wavelenghts 
-    #    sum_Gaussian=sum_Gaussian + Gaus[ooasia]
+        sum_Gaussian=sum_Gaussian + Gaus[ooasia]
     sum_Ga2=Gaus[0]+Gaus[1]      #   only two models of the [o II]3726-29 lines
-    sum_Gaussian=Gaus[0]+Gaus[1]+Gaus[2]+Gaus[3]+Gaus[4]+Gaus[5]+Gaus[6]+Gaus[7]+Gaus[8]+Gaus[9]+Gaus[10]+Gaus[11]+Gaus[12]+Gaus[13]+Gaus[14]
+    #sum_Gaussian=Gaus[0]+Gaus[1]+Gaus[2]+Gaus[3]+Gaus[4]+Gaus[5]+Gaus[6]+Gaus[7]+Gaus[8]+Gaus[9]+Gaus[10]+Gaus[11]+Gaus[12]+Gaus[13]+Gaus[14]
     gaussian_fit = f1(sum_Gaussian, lambd, ListGal[i]-spec, maxiter=iterr)
     gaussian_fit2 = f1(sum_Ga2, lambd, ListGal[i]-spec, maxiter=iterr) 
     Graph=[]
