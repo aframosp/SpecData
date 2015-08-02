@@ -263,7 +263,7 @@ def finalFit(i, spec,lambd,ListLines,ListGal,spIvar,iterr, limResol):
                 stdLine = (1/2.3548)*f[0]/nLines     #   estimate the observed standard deviation
                 lineWidthBase = (lambd[lineP['sup'][x]] - lambd[lineP['inf'][x]])/(2*nLines)
                       ##   calculate the observed line width at the base of the profile
-                if (ampMax>0) & (ampMax>3*spIvar[lineP['lambda'][x]]):  # & (coasi < 2):
+                if ampMax>0:   # & (ampMax>3*spIvar[lineP['lambda'][x]]):  # & (coasi < 2):
                       #   a model for the observed amplitude (emission line) is greater than three times
                         #    the error of the intensity in the spectrum and the bounds depend on the number of lines
                         #   in the profile and the width of his base
@@ -288,14 +288,14 @@ def finalFit(i, spec,lambd,ListLines,ListGal,spIvar,iterr, limResol):
                     if ampMax <=0:
                         print "It has not been possible to fit the line: ", ListLines['LAMBDA VAC ANG'][x]
                         Gaus.append(models.Gaussian1D(amplitude=0,mean=ListLines['LAMBDA VAC ANG'][x],stddev=0))
-                    elif ampMax<=3*spIvar[lineP['lambda'][x]]:
+                    #elif ampMax<=3*spIvar[lineP['lambda'][x]]:
                           ##   no model for the amplitud less tah three times the error
-                        Gaus.append(models.Gaussian1D(amplitude=0,mean=ListLines['LAMBDA VAC ANG'][x],stddev=0))
+                    #    Gaus.append(models.Gaussian1D(amplitude=0,mean=ListLines['LAMBDA VAC ANG'][x],stddev=0))
                     else:
                         Gaus.append(models.Gaussian1D(amplitude=ampMax,mean=ListLines['LAMBDA VAC ANG'][x],stddev=stdLine, bounds={'mean':(ListLines['LAMBDA VAC ANG'][x]-lineWidthBase/(2*nLines), ListLines['LAMBDA VAC ANG'][x]+lineWidthBase/(2*nLines)),'stddev':(0.8*stdLine, 1.5*stdLine)}))
-                elif ampMax<=3*spIvar[lineP['lambda'][x]]:
+                #elif ampMax<=3*spIvar[lineP['lambda'][x]]:
                       ##   no model for the amplitud less tah three times the error
-                    Gaus.append(models.Gaussian1D(amplitude=0,mean=ListLines['LAMBDA VAC ANG'][x],stddev=0))
+                #    Gaus.append(models.Gaussian1D(amplitude=0,mean=ListLines['LAMBDA VAC ANG'][x],stddev=0))
         condit = False  #   esto es mejor quitarlo
     sum_Gaussian=Gaus[0]
     for ooasia in range(1,len(Gaus)):
