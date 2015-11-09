@@ -1,12 +1,13 @@
 # SpecData
 Data Analysis for spectra in SDSS
 
-This branch is intended for testing new methods for fitting a unique spectrum. Later It will be integrated with master branch.
+This branch is intended for testing new methods for fitting spectral components of narrow line regions.
 
-Download SpecDataTest.ipynb , dataArt1SDSSFound.tbl , /Exam_fits/SDSS J165712.75+321141.4SP1.fits, LinesAll.txt , DefSD.py
+Download SpecData.ipynb , DescargaFITS.ipynb , LinesAll.txt , DefSD.py , and the folder /LIST1
 
-This notebook contains the basic functions for read, plotting and fitting the give spectrum in the lines(LinesAll.txt)
+DescargaFITS.ipynb allows download a list of objects given in a list : /LIST1/listR.txt
 
-The main repository(master) have a version for reading a large number of spectra but with older stable methods.
+Specdata.ipynb contains the basic functions for read, plotting and fitting the given spectrum in the lines (LinesAll.txt).
 
-All the new stable methods must be in DefSD.py 
+Diagnostic diagrams of electron density and temperature can be done according to the Diagnostics Class of PyNeb. More information: [PyNeb's Home Page](http://www.iac.es/proyecto/PyNeb/)
+
