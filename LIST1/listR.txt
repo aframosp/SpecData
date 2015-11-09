@@ -1,0 +1,3 @@
+name	auxname	ra	dec	type	typetype
+Iras23060+0505	---	23h08m33.9s	+05d21m30s	IRLGS	---
+3C234	---	10h01m49.5s	+28d47m09s	IRLGS	---

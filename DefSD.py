@@ -91,7 +91,7 @@ def fit2(i, spec,lambd,ListLines,ListGal,iterr):
 #   se debe encontrar los límites de los parámetros
 
 def lineProfile(i,spec, lambd,ListLines,ListGal, limResoluc):
-    linePr = Table(names=('lambda', 'inf', 'sup'), dtype=('i5','i5', 'i5'))
+    linePr = Table(names=('lambda', 'inf', 'sup'), dtype=('i','i', 'i'))
     for c in range(0, len(ListLines)):
         lambdLine=ListLines['LAMBDA VAC ANG'][c]          #Líneas obtenidas de la base de datos Astroquery
         v = np.where((lambd >= lambdLine-limResoluc) & (lambd <= lambdLine+limResoluc))
